@@ -1,3 +1,4 @@
+/* eslint-disabled */
 import sveltePreprocess from 'svelte-preprocess'
 import * as sass from 'sass'
 

@@ -14,7 +14,7 @@ module.exports = {
         sourceType: 'module',
         tsconfigRootDir: __dirname,
         project: ['./tsconfig.json'],
-        extraFileExtensions: ['.svelte']
+        extraFileExtensions: ['.svelte','.cjs']
     },
     rules: {
         'prettier/prettier': 'error',
@@ -29,5 +29,5 @@ module.exports = {
         'svelte3/typescript': () => require('typescript'), // pass the TypeScript package to the Svelte plugin
     },
     plugins: ["eslint-plugin-prettier", '@typescript-eslint','svelte3',],
-    ignorePatterns: ['node_modules']
+    ignorePatterns: ['node_modules','svelte.config.js','commitlint.config.cjs','.cz-config.js']
 }
