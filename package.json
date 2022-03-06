@@ -42,8 +42,16 @@
     "vite": "^2.8.0"
   },
   "dependencies": {
+    "hast-util-sanitize": "^4.0.0",
     "monaco-editor": "^0.32.1",
-    "sass": "^1.49.9"
+    "rehype-raw": "^6.1.1",
+    "rehype-sanitize": "^5.0.1",
+    "rehype-stringify": "^9.0.3",
+    "remark-breaks": "^3.0.2",
+    "remark-parse": "^10.0.1",
+    "remark-rehype": "^10.1.0",
+    "sass": "^1.49.9",
+    "unified": "^10.1.1"
   },
   "lint-staged": {
     "*.{vue,js,jsx,mjs,ts,tsx,cts,mts,svelte}": "eslint --cache --fix",
