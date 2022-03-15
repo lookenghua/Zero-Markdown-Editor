@@ -2,13 +2,13 @@
 $prefix: '.zero-mde';
 #{$prefix}-toolbar {
   height: 34px;
-  padding:0 10px;
+  padding: 0 10px;
   border-bottom: 1px solid #e1e4e8;
   background: #fafbfc;
   display: flex;
   align-items: center;
 
-  &-left{
+  &-left {
     flex: 1;
   }
   &-icon {
@@ -33,18 +33,42 @@ $prefix: '.zero-mde';
 
 <script lang="ts">
 import { icons } from './icons'
-import type { ZeroMDEAction } from './types';
+import type { ZeroMDEAction } from './types'
+import ActionToolbar from './action-toolbar.svelte'
+import DropdownToolbar from './dropdown-toolbar.svelte'
 
-const defaultPlugins:ZeroMDEAction[] = [
+const defaultPlugins: ZeroMDEAction[] = [
   {
     title: '标题',
     icon: icons.heading,
     handler: {
       type: 'dropdown',
-      actions:[{
-        title:"一级标题",
-        icon:icons.h1,
-      }],
+      actions: [
+        {
+          title: '一级标题',
+          icon: icons.h1,
+        },
+        {
+          title: '二级标题',
+          icon: icons.h2,
+        },
+        {
+          title: '三级标题',
+          icon: icons.h3,
+        },
+        {
+          title: '四级标题',
+          icon: icons.h4,
+        },
+        {
+          title: '五级标题',
+          icon: icons.h5,
+        },
+        {
+          title: '六级标题',
+          icon: icons.h6,
+        },
+      ],
     },
   },
   {
@@ -52,7 +76,7 @@ const defaultPlugins:ZeroMDEAction[] = [
     icon: icons.bold,
     handler: {
       type: 'action',
-      click(){}
+      click() {},
     },
   },
   {
@@ -60,7 +84,7 @@ const defaultPlugins:ZeroMDEAction[] = [
     icon: icons.italic,
     handler: {
       type: 'action',
-      click(){}
+      click() {},
     },
   },
   {
@@ -68,7 +92,7 @@ const defaultPlugins:ZeroMDEAction[] = [
     icon: icons.quote,
     handler: {
       type: 'action',
-      click(){}
+      click() {},
     },
   },
   {
@@ -76,7 +100,7 @@ const defaultPlugins:ZeroMDEAction[] = [
     icon: icons.link,
     handler: {
       type: 'action',
-      click(){}
+      click() {},
     },
   },
   {
@@ -84,7 +108,7 @@ const defaultPlugins:ZeroMDEAction[] = [
     icon: icons.image,
     handler: {
       type: 'action',
-      click(){}
+      click() {},
     },
   },
   {
@@ -92,7 +116,7 @@ const defaultPlugins:ZeroMDEAction[] = [
     icon: icons.code,
     handler: {
       type: 'action',
-      click(){}
+      click() {},
     },
   },
   {
@@ -100,7 +124,7 @@ const defaultPlugins:ZeroMDEAction[] = [
     icon: icons.ol,
     handler: {
       type: 'action',
-      click(){}
+      click() {},
     },
   },
   {
@@ -108,7 +132,7 @@ const defaultPlugins:ZeroMDEAction[] = [
     icon: icons.ul,
     handler: {
       type: 'action',
-      click(){}
+      click() {},
     },
   },
   {
@@ -116,58 +140,63 @@ const defaultPlugins:ZeroMDEAction[] = [
     icon: icons.hr,
     handler: {
       type: 'action',
-      click(){}
+      click() {},
     },
   },
 ]
-const rightActions:ZeroMDEAction[] = [
+const rightActions: ZeroMDEAction[] = [
   {
-    title:"目录",
-    icon:icons.toc,
-    handler:{
-      type:'action',
-      click(){}
-    }
+    title: '目录',
+    icon: icons.toc,
+    handler: {
+      type: 'action',
+      click() {},
+    },
   },
   {
-    title:"帮助",
-    icon:icons.help,
-    handler:{
-      type:'action',
-      click(){}
-    }
+    title: '帮助',
+    icon: icons.help,
+    handler: {
+      type: 'action',
+      click() {},
+    },
   },
   {
-    title:"仅编辑区",
-    icon:icons.left,
-    handler:{
-      type:'action',
-      click(){}
-    }
+    title: '仅编辑区',
+    icon: icons.left,
+    handler: {
+      type: 'action',
+      click() {},
+    },
   },
   {
-    title:"仅预览区",
-    icon:icons.right,
-    handler:{
-      type:'action',
-      click(){}
-    }
+    title: '仅预览区',
+    icon: icons.right,
+    handler: {
+      type: 'action',
+      click() {},
+    },
   },
   {
-    title:"全屏",
-    icon:icons.fullscreenOn,
-    handler:{
-      type:'action',
-      click(){}
-    }
-  }
+    title: '全屏',
+    icon: icons.fullscreenOn,
+    handler: {
+      type: 'action',
+      click() {},
+    },
+  },
 ]
 </script>
 
 <div class="zero-mde-toolbar">
   <div class="zero-mde-toolbar-left">
     {#each defaultPlugins as plugin}
-      <div class="zero-mde-toolbar-icon">{@html plugin.icon}</div>
+      {#if plugin.handler.type === 'action'}
+        <ActionToolbar {plugin} />
+        {:else}
+        <DropdownToolbar {plugin}/>
+      {/if}
+      
     {/each}
   </div>
   <div class="zero-mde-toolbar-right">
