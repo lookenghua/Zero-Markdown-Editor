@@ -16,6 +16,7 @@
   "devDependencies": {
     "@commitlint/cli": "^16.2.1",
     "@commitlint/config-conventional": "^16.2.1",
+    "@mapbox/rehype-prism": "^0.8.0",
     "@rollup/plugin-typescript": "^8.3.1",
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.30",
     "@tsconfig/svelte": "^2.0.1",
@@ -48,12 +49,15 @@
     "vite": "^2.8.0"
   },
   "dependencies": {
+    "deepmerge": "^4.2.2",
     "hast-util-sanitize": "^4.0.0",
     "monaco-editor": "^0.32.1",
+    "rehype-autolink-headings": "^6.1.1",
     "rehype-raw": "^6.1.1",
     "rehype-sanitize": "^5.0.1",
     "rehype-stringify": "^9.0.3",
     "remark-breaks": "^3.0.2",
+    "remark-footnotes": "^4.0.1",
     "remark-parse": "^10.0.1",
     "remark-rehype": "^10.1.0",
     "sass": "^1.49.9",
