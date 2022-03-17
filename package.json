@@ -51,6 +51,7 @@
     "remark-parse": "^10.0.1",
     "remark-rehype": "^10.1.0",
     "sass": "^1.49.9",
+    "select-files": "^1.0.1",
     "tippy.js": "^6.3.7",
     "unified": "^10.1.1"
   },
