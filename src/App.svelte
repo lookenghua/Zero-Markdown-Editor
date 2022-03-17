@@ -1,13 +1,13 @@
 <style>
-  :global(.zero-mde) {
-    height: 500px !important;
-  }
+    :global(.zero-mde) {
+        height: 500px !important;
+    }
 </style>
 
 <script lang="ts">
-  import Editor from './lib/editor.svelte'
-  
-  const data = `![mahua](http://mahua.jser.me/mahua-logo.jpg)
+    import Editor from './lib/editor.svelte'
+
+    const data = `![mahua](http://mahua.jser.me/mahua-logo.jpg)
 ##MaHua是什么?
 一个在线编辑markdown文档的编辑器
 
@@ -48,10 +48,21 @@ var ihubo = {
   site : "http://jser.me"
 }
 \`\`\``
+
+    function handleUploadImages(files: File[]) {
+        console.log(files)
+        return new Promise(resolve => {
+            resolve(Array.from(files).map((_,i)=>({
+                url:"http://mahua.jser.me/mahua-logo.jpg",
+                alt:"",
+                title:`图片${i+1}`
+            })))
+        })
+    }
 </script>
 
 <main>
-  <div style="padding-top: 10vh">
-    <Editor value={data} />
-  </div>
+    <div style="padding-top: 10vh">
+        <Editor value={data} uploadImages={handleUploadImages}/>
+    </div>
 </main>
