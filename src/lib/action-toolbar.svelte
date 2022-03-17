@@ -21,10 +21,10 @@
 
 <script lang="ts">
   import { onMount } from 'svelte'
-
   import tippy from 'tippy.js'
   import 'tippy.js/dist/tippy.css'
   import type { ZeroMDEAction } from './types'
+  
   export let plugin: ZeroMDEAction
   let btn: HTMLElement
   // 监听icon点击

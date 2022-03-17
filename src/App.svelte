@@ -6,7 +6,8 @@
 
 <script lang="ts">
   import Editor from './lib/editor.svelte'
-  let data = `![mahua](http://mahua.jser.me/mahua-logo.jpg)
+  
+  const data = `![mahua](http://mahua.jser.me/mahua-logo.jpg)
 ##MaHua是什么?
 一个在线编辑markdown文档的编辑器
 
@@ -51,6 +52,6 @@ var ihubo = {
 
 <main>
   <div style="padding-top: 10vh">
-    <Editor style="height: 400px" value={data} />
+    <Editor value={data} />
   </div>
 </main>

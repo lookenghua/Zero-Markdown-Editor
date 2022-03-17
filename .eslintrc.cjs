@@ -20,6 +20,9 @@ module.exports = {
         'import/no-mutable-exports': 0,
         'no-labels': 0,
         'no-restricted-syntax': 0,
+        'no-restricted-exports': 0,
+        'no-return-assign': 0,
+        '@typescript-eslint/no-floating-promises': 0
     },
     overrides: [
         {
@@ -44,6 +47,7 @@ module.exports = {
                         allowAny: true,
                     },
                 ],
+                '@typescript-eslint/no-use-before-define': 'off'
             },
         },
     ],
