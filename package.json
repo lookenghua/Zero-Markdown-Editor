@@ -59,7 +59,6 @@
     "rehype-sanitize": "^5.0.1",
     "rehype-stringify": "^9.0.3",
     "remark-breaks": "^3.0.2",
-    "remark-codesandbox": "^0.10.1",
     "remark-footnotes": "^4.0.1",
     "remark-frontmatter": "^4.0.1",
     "remark-gfm": "^3.0.1",
@@ -68,7 +67,10 @@
     "sass": "^1.49.9",
     "select-files": "^1.0.1",
     "tippy.js": "^6.3.7",
-    "unified": "^10.1.1"
+    "unified": "^10.1.1",
+    "unist-builder": "^3.0.0",
+    "unist-util-is": "^5.1.1",
+    "unist-util-visit": "^4.1.0"
   },
   "lint-staged": {
     "*.{vue,js,jsx,mjs,ts,tsx,cts,mts,svelte}": "eslint --cache --fix",

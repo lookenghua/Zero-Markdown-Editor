@@ -13,10 +13,10 @@
     import rehypeAutolinkHeadings from "rehype-autolink-headings"
     import remarkFrontmatter from "remark-frontmatter"
     import remarkGfm from 'remark-gfm'
-    import remarkCodesandbox from "remark-codesandbox"
     import remarkHeadings from '@vcarl/remark-headings';
     import {createEventDispatcher} from "svelte";
-    
+    import remarkCodepen from "./plugin/remark-codepen"
+
     export let value = ''
     let html = ''
     const schemaStr = JSON.stringify(defaultSchema)
@@ -26,9 +26,9 @@
         attributes: {
             pre: ['className'],
             code: ['className'],
-            iframe:['src']
+            iframe: ['src','style',"loading"]
         },
-        tagNames:[
+        tagNames: [
             "iframe"
         ]
     })
@@ -49,7 +49,7 @@
                 console.log("===frontmatter===")
                 console.dir(tree)
             })
-            .use(remarkCodesandbox, {mode: 'iframe'})
+            .use(remarkCodepen)
             .use(remarkBreaks) // 保持换行状态
             .use(remarkGfm) // gfm支持高级功能,table,脚注,待办
             .use(remarkFootnotes, {inlineNotes: true})// 脚注
@@ -69,10 +69,10 @@
             .use(rehypeStringify) // 将AST树形结构转换成html
             .use(rehypeAutolinkHeadings)
             .process(value)
-            .then((vfile) =>{
-                emit("change:heading",vfile.data.headings)
+            .then((vfile) => {
+                emit("change:heading", vfile.data.headings)
                 return String(vfile)
-            } )
+            })
             .then((str) => (html = str))
     }
 

@@ -83,8 +83,10 @@ www.example.com, https://example.com, and contact@example.com.
 * [x] done
 
 ## Codesandbox
-\`\`\`js codesandbox=r5x34869vq
+\`\`\`js codepen height=300px
+https://codepen.io/kitjenson/embed/preview/MWrwrMw?default-tab=result
 \`\`\`
+
 `
 
     function handleUploadImages(files: File[]) {
