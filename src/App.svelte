@@ -81,6 +81,10 @@ www.example.com, https://example.com, and contact@example.com.
 
 * [ ] to do
 * [x] done
+
+## Codesandbox
+\`\`\`js codesandbox=r5x34869vq
+\`\`\`
 `
 
     function handleUploadImages(files: File[]) {

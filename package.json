@@ -49,6 +49,7 @@
     "vite": "^2.8.0"
   },
   "dependencies": {
+    "@vcarl/remark-headings": "^0.0.1",
     "deepmerge": "^4.2.2",
     "hast-util-sanitize": "^4.0.0",
     "js-yaml": "^4.1.0",
@@ -58,6 +59,7 @@
     "rehype-sanitize": "^5.0.1",
     "rehype-stringify": "^9.0.3",
     "remark-breaks": "^3.0.2",
+    "remark-codesandbox": "^0.10.1",
     "remark-footnotes": "^4.0.1",
     "remark-frontmatter": "^4.0.1",
     "remark-gfm": "^3.0.1",
