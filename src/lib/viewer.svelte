@@ -11,7 +11,9 @@
     import {defaultSchema} from 'hast-util-sanitize'
     import deepmerge from 'deepmerge'
     import rehypeAutolinkHeadings from "rehype-autolink-headings"
-
+    import remarkFrontmatter from "remark-frontmatter"
+    import remarkGfm from 'remark-gfm'
+    
     export let value = ''
     let html = ''
     const schemaStr = JSON.stringify(defaultSchema)
@@ -35,8 +37,13 @@
     function updateHTML() {
         unified()
             .use(remarkParse)// 解析markdown文本
+            .use(remarkFrontmatter, 'yaml')// 获取frontmatter
+            .use(() => (tree) => {
+                console.dir(tree)
+            })
             .use(remarkBreaks) // 保持换行状态
-            .use(remarkFootnotes, {inlineNotes: true})
+            .use(remarkGfm)
+            .use(remarkFootnotes, {inlineNotes: true})// 脚注
             .use(remarkRehype, {allowDangerousHtml: true}) // 将markdown转换成属性结构
             .use(rehypePrism) // 高亮代码
             .use(rehypeRaw)// 保持markdown里面直接书写的html

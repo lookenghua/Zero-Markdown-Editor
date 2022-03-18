@@ -7,7 +7,12 @@
 <script lang="ts">
     import Editor from './lib/editor.svelte'
 
-    const data = `![mahua](http://mahua.jser.me/mahua-logo.jpg)
+    const data = `---
+a: 1
+b: 1
+---
+
+![mahua](http://mahua.jser.me/mahua-logo.jpg)
 ## MaHua是什么?
 一个在线编辑markdown文档的编辑器
 
@@ -48,7 +53,10 @@ var ihubo = {
   site : "http://jser.me"
 }
 \`\`\`
+<div>
 <img src="http://mahua.jser.me/mahua-logo.jpg" />
+</div>
+## footnote
 Here is a footnote reference,[^1]
 another,[^longnote],
 and optionally there are inline
@@ -58,6 +66,21 @@ have to pick an identifier and move down to type the note.]
 [^1]: Here is the footnote.
 
 [^longnote]: Heres one with multiple blocks.
+## Strikethrough
+
+~one~ or ~~two~~ tildes.
+## Autolink literals
+
+www.example.com, https://example.com, and contact@example.com.
+## Table
+
+| a | b  |  c |  d  |
+| - | :- | -: | :-: |
+
+## Tasklist
+
+* [ ] to do
+* [x] done
 `
 
     function handleUploadImages(files: File[]) {
