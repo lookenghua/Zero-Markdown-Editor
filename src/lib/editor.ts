@@ -1,18 +1,17 @@
-import selectFiles from 'select-files';
-import type { editor } from 'monaco-editor';
-import * as monaco from 'monaco-editor';
+import selectFiles from 'select-files'
+import { monaco } from './customMonaco'
 
-export type IStandaloneCodeEditor = editor.IStandaloneCodeEditor;
-export type EditorUtils = ReturnType<typeof createEditorUtils>;
-export type EditorContext = { editor: IStandaloneCodeEditor } & EditorUtils;
+export type IStandaloneCodeEditor = monaco.editor.IStandaloneCodeEditor
+export type EditorUtils = ReturnType<typeof createEditorUtils>
+export type EditorContext = { editor: IStandaloneCodeEditor } & EditorUtils
 // 编辑器常用方法
 export function createEditorUtils(editor: IStandaloneCodeEditor) {
 	return {
 		// 替换文字
 		wrapText(before: string, after = '') {
-			const range = editor.getSelection();
-			const value = editor.getModel().getValueInRange(range);
-			const lineNumber = range.positionLineNumber;
+			const range = editor.getSelection()
+			const value = editor.getModel().getValueInRange(range)
+			const lineNumber = range.positionLineNumber
 			const fromBefore = editor
 				.getModel()
 				.getValueInRange(
@@ -22,7 +21,7 @@ export function createEditorUtils(editor: IStandaloneCodeEditor) {
 						lineNumber,
 						range.startColumn,
 					),
-				);
+				)
 			const toAfter = editor
 				.getModel()
 				.getValueInRange(
@@ -32,10 +31,10 @@ export function createEditorUtils(editor: IStandaloneCodeEditor) {
 						lineNumber,
 						range.endColumn + after.length,
 					),
-				);
+				)
 			if (fromBefore === before && toAfter === after) {
-				const startColumn = range.startColumn - before.length;
-				const endColumn = range.endColumn + after.length;
+				const startColumn = range.startColumn - before.length
+				const endColumn = range.endColumn + after.length
 				editor.executeEdits('insert-code', [
 					{
 						range: {
@@ -46,12 +45,12 @@ export function createEditorUtils(editor: IStandaloneCodeEditor) {
 						},
 						text: value,
 					},
-				]);
+				])
 				editor.setSelection(
 					new monaco.Selection(lineNumber, startColumn, lineNumber, endColumn),
-				);
+				)
 			} else {
-				const replaceText = before + value + after;
+				const replaceText = before + value + after
 				editor.executeEdits('insert-code', [
 					{
 						range: {
@@ -62,7 +61,7 @@ export function createEditorUtils(editor: IStandaloneCodeEditor) {
 						},
 						text: replaceText,
 					},
-				]);
+				])
 				editor.setSelection(
 					new monaco.Selection(
 						lineNumber,
@@ -70,14 +69,14 @@ export function createEditorUtils(editor: IStandaloneCodeEditor) {
 						lineNumber,
 						range.startColumn + replaceText.length - after.length,
 					),
-				);
+				)
 			}
 		},
 		// 替换整行
 		replaceLines(replaceMethod: (line: string) => string) {
-			const position = editor.getPosition();
-			const lineValue = editor.getModel().getLineContent(position.lineNumber);
-			const replaceText = replaceMethod(lineValue);
+			const position = editor.getPosition()
+			const lineValue = editor.getModel().getLineContent(position.lineNumber)
+			const replaceText = replaceMethod(lineValue)
 			editor.executeEdits('insert-code', [
 				{
 					range: {
@@ -88,8 +87,8 @@ export function createEditorUtils(editor: IStandaloneCodeEditor) {
 					},
 					text: replaceText,
 				},
-			]);
-			const newLineValue = editor.getModel().getLineContent(position.lineNumber);
+			])
+			const newLineValue = editor.getModel().getLineContent(position.lineNumber)
 			editor.setSelection(
 				new monaco.Selection(
 					position.lineNumber,
@@ -97,12 +96,12 @@ export function createEditorUtils(editor: IStandaloneCodeEditor) {
 					position.lineNumber,
 					newLineValue.length + 1,
 				),
-			);
+			)
 		},
 		// 新增区块
 		appendBlock(content: string) {
-			const position = editor.getPosition();
-			const { lineNumber } = position;
+			const position = editor.getPosition()
+			const { lineNumber } = position
 			editor.executeEdits('insert-code', [
 				{
 					range: {
@@ -113,8 +112,8 @@ export function createEditorUtils(editor: IStandaloneCodeEditor) {
 					},
 					text: content,
 				},
-			]);
+			])
 		},
 		selectFiles,
-	};
+	}
 }
