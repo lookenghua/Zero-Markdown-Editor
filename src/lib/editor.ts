@@ -3,7 +3,7 @@ import { monaco } from './customMonaco'
 
 export type IStandaloneCodeEditor = monaco.editor.IStandaloneCodeEditor
 export type EditorUtils = ReturnType<typeof createEditorUtils>
-export type EditorContext = { editor: IStandaloneCodeEditor } & EditorUtils
+export type EditorContext = { editor: IStandaloneCodeEditor; container: HTMLElement } & EditorUtils
 // 编辑器常用方法
 export function createEditorUtils(editor: IStandaloneCodeEditor) {
 	return {

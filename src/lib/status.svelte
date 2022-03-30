@@ -9,6 +9,7 @@
     justify-content: space-between;
     padding: 0 10px;
     height: 24px;
+    background: white;
     .scroll-top{
       cursor: pointer;
     }
