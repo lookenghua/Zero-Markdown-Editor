@@ -10,7 +10,6 @@ export default function remarkCodepen() {
 					const meta = parseMeta(node.meta || '')
 					const iframe = document.createElement('iframe')
 					iframe.src = node.value
-					iframe.loading = 'lazy'
 					iframe.style.width = '100%'
 					if (meta.height) {
 						iframe.style.height = meta.height

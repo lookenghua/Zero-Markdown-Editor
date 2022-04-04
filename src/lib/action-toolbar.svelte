@@ -10,6 +10,9 @@
     &:hover {
       background-color: #e1e4e8;
     }
+    &.active{
+      color: #0366d6;
+    }
     :global(svg) {
       display: block;
       padding: 4px;
@@ -41,6 +44,6 @@
   })
 </script>
 
-<div class="zero-mde-toolbar-icon" bind:this={btn} on:click={handleIconClick}
+<div class="zero-mde-toolbar-icon" class:active={plugin.active} bind:this={btn} on:click={handleIconClick}
   >{@html plugin.icon}</div
 >

@@ -1,15 +1,19 @@
 type Listener = () => void
 type ZeroMDEActionHandler =
-  | {
-      type: 'action'
-      click: Listener
-    }
-  | {
-      type: 'dropdown'
-      actions: ZeroMDEAction[]
-    }
+	| {
+			type: 'action'
+			active?: boolean
+			click: Listener
+	  }
+	| {
+			type: 'dropdown'
+			active?: boolean
+			actions: ZeroMDEAction[]
+	  }
+
 export interface ZeroMDEAction {
-  title?: string
-  icon?: string
-  handler?: ZeroMDEActionHandler
+	title?: string
+	icon?: string
+	active?: boolean
+	handler?: ZeroMDEActionHandler
 }
