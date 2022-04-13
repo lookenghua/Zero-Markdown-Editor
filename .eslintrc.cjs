@@ -4,50 +4,25 @@ const typescript = require('typescript');
 
 module.exports = {
     root: true,
+    env: {
+        browser: true,
+        node: true,
+        es6: true,
+    },
     parser: '@typescript-eslint/parser',
-    parserOptions: {
-        tsconfigRootDir: __dirname,
-        project: ['./tsconfig.json'],
-        extraFileExtensions: ['.svelte'],
-        sourceType: 'module',
-        ecmaVersion: 2020,
-    },
-    rules: {
-        'no-console': ['warn', {allow: ['warn', 'error', 'info']}],
-        'tsdoc/syntax': 'warn',
-        'import/no-extraneous-dependencies': ['error', {devDependencies: true}],
-        'import/prefer-default-export': 'off',
-        'import/no-mutable-exports': 0,
-        'no-labels': 0,
-        'no-restricted-syntax': 0,
-        'no-restricted-exports': 0,
-        'no-return-assign': 0,
-        '@typescript-eslint/no-floating-promises': 0
-    },
+    plugins: ['svelte3', '@typescript-eslint'],
     overrides: [
         {
             files: ['**/*.svelte'],
             processor: 'svelte3/svelte3',
             rules: {
-                'no-unused-vars': 'off',
+                '@typescript-eslint/no-unused-vars': 'off',
                 'import/no-unresolved': 'off',
                 'import/first': 'off',
                 'import/no-duplicates': 'off',
                 'import/no-mutable-exports': 'off',
                 'import/extensions': 'off',
-                '@typescript-eslint/no-unused-vars': 'off',
-                '@typescript-eslint/no-unsafe-member-access': 'off',
-                '@typescript-eslint/no-unsafe-argument': 'off',
-                '@typescript-eslint/restrict-template-expressions': [
-                    'warn',
-                    {
-                        allowNumber: true,
-                        allowBoolean: true,
-                        allowNullish: true,
-                        allowAny: true,
-                    },
-                ],
-                '@typescript-eslint/no-use-before-define': 'off'
+                '@typescript-eslint/no-unsafe-call': 'off'
             },
         },
     ],
@@ -62,22 +37,31 @@ module.exports = {
             typescript: {},
         },
     },
-    plugins: ['svelte3', '@typescript-eslint', 'eslint-plugin-tsdoc'],
+    parserOptions: {
+        tsconfigRootDir: __dirname,
+        project: ['./tsconfig.json'],
+        extraFileExtensions: ['.svelte'],
+        sourceType: 'module',
+        ecmaVersion: 2020,
+    },
     extends: [
-        'airbnb-base',
-        'airbnb-typescript/base',
         'eslint:recommended',
         'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
-        'plugin:eslint-comments/recommended',
-        'plugin:import/recommended',
-        'plugin:import/typescript',
-        'prettier',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking'
     ],
-    ignorePatterns: ['*.cjs', 'static/*.js', 'svelte.config.js', 'scripts/js/*.ts', 'vite.config.ts',"src/lib/plugin/**/*.js","dist/*.js"],
-    env: {
-        browser: true,
-        node: true,
-        es2020: true,
+    rules: {
+        'no-console': ['warn', {allow: ['warn', 'error', 'info']}],
+        'tsdoc/syntax': 'warn',
+        'import/no-extraneous-dependencies': ['error', {devDependencies: true}],
+        'import/prefer-default-export': 'off',
+        'import/no-mutable-exports': 0,
+        'no-labels': 0,
+        'no-restricted-syntax': 0,
+        'no-restricted-exports': 0,
+        'no-return-assign': 0,
+        '@typescript-eslint/no-floating-promises': 0,
+        'no-unused-labels': 0,
+        '@typescript-eslint/no-unsafe-assignment': 0
     },
+    ignorePatterns: ['*.cjs', 'static/*.js', 'svelte.config.js', 'scripts/js/*.ts', 'vite.config.ts', "src/lib/plugin/**/*.js", "dist/*.js"],
 };
